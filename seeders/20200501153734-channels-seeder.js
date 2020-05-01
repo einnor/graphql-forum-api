@@ -1,26 +1,26 @@
 'use strict';
 
-const uuid = require('uuid/v4');
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Channels', [
       {
-        id: uuid(),
+        id: uuidv4(),
         name: 'General',
         slug: 'general',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: uuid(),
+        id: uuidv4(),
         name: 'GraphQL',
         slug: 'graphql',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: uuid(),
+        id: uuidv4(),
         name: 'Flutter',
         slug: 'flutter',
         createdAt: new Date(),
