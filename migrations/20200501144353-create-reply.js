@@ -6,10 +6,25 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4
       },
-      title: {
-        type: Sequelize.STRING
+      content: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+      threadID: {
+        type: Sequelize.UUID,
+        allowNull: false
+      },
+      userId: {
+        type: Sequelize.UUID,
+        allowNull: false
+      },
+      isBestAnswer: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,
