@@ -55,6 +55,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Thread.belongsTo(models.User, { foreignKey: 'userId' });
     Thread.hasMany(models.Reply);
+    Thread.belongsTo(models.Channel, { foreignKey: 'channelId' });
   };
   return Thread;
 };
