@@ -2,22 +2,13 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Favorites', {
-      id: {
+      replyId: {
+        type: Sequelize.UUID,
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
       },
-      title: {
-        type: Sequelize.STRING
-      },
-      createdAt: {
+      userId: {
+        type: Sequelize.UUID,
         allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },
