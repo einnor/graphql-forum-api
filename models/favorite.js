@@ -1,7 +1,14 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Favorite = sequelize.define('Favorite', {
-    title: DataTypes.STRING
+    replyId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+    },
+    userId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+    }
   }, {});
   Favorite.associate = function(models) {
     // associations can be defined here
