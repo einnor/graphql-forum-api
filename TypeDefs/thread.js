@@ -5,7 +5,6 @@ module.exports = gql`
     id: ID!
     title: String!
     slug: String!
-    slug: String!
     creator: User!
     channel: Channel!
     status: ThreadStatus!
