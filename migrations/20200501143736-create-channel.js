@@ -4,7 +4,6 @@ module.exports = {
     return queryInterface.createTable('Channels', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
