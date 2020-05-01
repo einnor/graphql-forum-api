@@ -6,10 +6,42 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4
       },
       title: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      slug: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      content: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+      userId: {
+        type: Sequelize.UUID,
+        allowNull: false
+      },
+      channelId: {
+        type: Sequelize.UUID,
+        allowNull: false
+      },
+      status: {
+        type: Sequelize.ENUM('UNSOLVED', 'SOLVED'),
+        allowNull: false,
+        defaultValue: 'UNSOLVED'
+      },
+      isLocked: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },
+      lastRepliedAt: {
+        type: Sequelize.DATE,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
