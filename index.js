@@ -23,7 +23,7 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: { model },
+  context: { models },
 });
 
 server.applyMiddleware({

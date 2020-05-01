@@ -36,8 +36,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Reply.associate = function(models) {
     // associations can be defined here
-    Reply.belongsTp(models.User, { foreignKey: 'userId' });
-    Reply.belongsTp(models.Thread, { foreignKey: 'threadId' });
+    Reply.belongsTo(models.User, { foreignKey: 'userId' });
+    Reply.belongsTo(models.Thread, { foreignKey: 'threadId' });
   };
   return Reply;
 };
