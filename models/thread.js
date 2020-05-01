@@ -53,6 +53,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Thread.associate = function(models) {
     // associations can be defined here
+    Thread.belongsTo(models.User, { foreignKey: 'userId' });
   };
   return Thread;
 };
