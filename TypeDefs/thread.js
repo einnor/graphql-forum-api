@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require('./node_modules/apollo-server-express');
 
 module.exports = gql`
   type Thread {
