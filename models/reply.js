@@ -36,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Reply.associate = function(models) {
     // associations can be defined here
+    Reply.belongsTp(models.User, { foreignKey: 'userId' });
   };
   return Reply;
 };
