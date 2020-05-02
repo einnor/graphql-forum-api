@@ -6,8 +6,8 @@ module.exports = gql`
     username: String!
     role: Role!
     avatar: String!
-    createdAt: String!
-    updatedAt: String!
+    createdAt: DateTime!
+    updatedAt: DateTime!
   }
 `;
 

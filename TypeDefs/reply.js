@@ -7,7 +7,7 @@ module.exports = gql`
     content: String!
     user: User!
     isBestAnswer: Boolean!
-    createdAt: String!
-    updatedAt: String!
+    createdAt: DateTime!
+    updatedAt: DateTime!
   }
 `;
