@@ -1,4 +1,4 @@
-const { ApolloError, AuthenticationError } = require('apollo-server-express');
+const { ApolloError, AuthenticationError, UserInputError } = require('apollo-server-express');
 const bcrypt = require('bcrypt');
 
 const { generateToken } = require('../utils');
@@ -19,6 +19,11 @@ module.exports = {
     async signUp (parent, args, context) {
       const { models } = context;
       const { username, email, password } = args;
+
+      if (!username || !email || !password) {
+        throw new UserInputError('Missing fields');
+      }
+
       const userExists = await models.User.findOne({ where: { email } });
 
       if (userExists) {
