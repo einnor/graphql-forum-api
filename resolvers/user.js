@@ -1,5 +1,6 @@
 const { ApolloError, AuthenticationError } = require('apollo-server-express');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 module.exports = {
   Mutation: {
@@ -35,6 +36,8 @@ module.exports = {
       if (!user) {
         throw new AuthenticationError('Invalid credentials.');
       }
+
+      const isPasswordValid = await bcrypt.compare(password, user.password);
     }
   },
 };
