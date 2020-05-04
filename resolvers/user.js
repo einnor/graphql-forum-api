@@ -1,10 +1,20 @@
 const { ApolloError, AuthenticationError } = require('apollo-server-express');
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const { generateToken } = require('../utils');
 
 module.exports = {
+  Query: {
+    async me (parent, args, context) {
+      const { authUser, models } = context;
+      if (!authUser) {
+        throw new AuthenticationError('Unauthorized');
+      }
+
+      return models.User.findByPk(authUser.id);
+    },
+  },
+
   Mutation: {
     async signUp (parent, args, context) {
       const { models } = context;
@@ -44,6 +54,6 @@ module.exports = {
       const token = generateToken(user);
 
       return { token };
-    }
+    },
   },
 };
