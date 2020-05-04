@@ -2,6 +2,8 @@ const { ApolloError, AuthenticationError } = require('apollo-server-express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+const { generateToken } = require('../utils');
+
 module.exports = {
   Mutation: {
     async signUp (parent, args, context) {
@@ -19,11 +21,7 @@ module.exports = {
         password,
       });
 
-      const token = jwt.sign({
-        id: user.id,
-        email: user.email,
-        role: user.role,
-      }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      const token = generateToken(user);
 
       return { token };
     },
@@ -42,6 +40,10 @@ module.exports = {
       if (!isPasswordValid) {
         throw new AuthenticationError('Invalid credentials.');
       }
+
+      const token = generateToken(user);
+
+      return { token };
     }
   },
 };
