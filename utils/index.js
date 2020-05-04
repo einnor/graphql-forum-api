@@ -9,6 +9,17 @@ const generateToken = (user) => {
 
 };
 
+const getAuthUser = (req) => {
+  // Authorization: Bearer token
+  const tokenWithBearer = req.headers.authorization || '';
+  const token = tokenWithBearer.split(' ')[1];
+
+  if (!token) {
+    return null;
+  }
+
+};
+
 module.exports = {
   generateToken,
 };
