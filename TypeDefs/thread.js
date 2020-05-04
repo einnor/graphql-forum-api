@@ -13,10 +13,10 @@ module.exports = gql`
     createdAt: DateTime!
     updatedAt: DateTime!
   }
-`;
 
-enum ThreadStatus {
-  SOLVED
-  UNSOLVED
-}
+  enum ThreadStatus {
+    SOLVED
+    UNSOLVED
+  }
+`;
 
