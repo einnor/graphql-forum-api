@@ -9,9 +9,17 @@ module.exports = gql`
     createdAt: DateTime!
     updatedAt: DateTime!
   }
-`;
 
-enum Role {
-  ADMIN
-  USER
-}
+  enum Role {
+    ADMIN
+    USER
+  }
+  
+  type Token {
+    token: String!
+  }
+  
+  extend type Mutation {
+    signUp(username: String!, email: String!, password: String!): Token!
+  }
+`;
