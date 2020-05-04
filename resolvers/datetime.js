@@ -1,4 +1,4 @@
-const { GraphQLScalarType, Kind} = require('graphql');
+const { GraphQLScalarType, Kind } = require('graphql');
 
 module.exports = {
   DateTime: new GraphQLScalarType({
