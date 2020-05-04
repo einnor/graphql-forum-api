@@ -27,4 +27,5 @@ const getAuthUser = (req) => {
 
 module.exports = {
   generateToken,
+  getAuthUser,
 };
