@@ -44,6 +44,11 @@ module.exports = {
     async signIn (parent, args, context) {
       const { models } = context;
       const { email, password } = args;
+
+      if (!email || !password) {
+        throw new UserInputError('Missing fields');
+      }
+
       const user = await models.User.findOne({ where: { email } });
 
       if (!user) {
