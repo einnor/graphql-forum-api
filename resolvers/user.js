@@ -1,4 +1,4 @@
-const { ApolloError} = require('apollo-server-express');
+const { ApolloError, AuthenticationError } = require('apollo-server-express');
 const jwt = require('jsonwebtoken');
 
 module.exports = {
@@ -26,5 +26,15 @@ module.exports = {
 
       return { token };
     },
+
+    async signIn (parent, args, context) {
+      const { models } = context;
+      const { email, password } = args;
+      const user = await models.User.findOne({ where: { email } });
+
+      if (!user) {
+        throw new AuthenticationError('Invalid credentials.');
+      }
+    }
   },
 };
