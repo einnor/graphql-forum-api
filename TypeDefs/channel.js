@@ -8,4 +8,8 @@ module.exports = gql`
     createdAt: DateTime!
     updatedAt: DateTime!
   }
+
+  extend type Query {
+    allChannels: [Channel!]!
+  }
 `;
