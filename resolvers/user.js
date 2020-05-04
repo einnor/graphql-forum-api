@@ -10,6 +10,12 @@ module.exports = {
       if (userExists) {
         throw new ApolloError('User already exists.');
       }
+
+      const user = await models.User.create({
+        username,
+        email,
+        password,
+      });
     },
   },
 };
