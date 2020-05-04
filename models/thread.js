@@ -63,6 +63,9 @@ module.exports = (sequelize, DataTypes) => {
 
   SequelizeSlugify.slugifyModel(Thread, {
     source: ['title'],
+    slugOptions: { lower: true },
+    column: 'slug',
+    incrementalReplacement: '-',
   });
 
   return Thread;
