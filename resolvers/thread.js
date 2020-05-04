@@ -10,12 +10,13 @@ module.exports = {
         throw new UserInputError('Missing fields');
       }
 
-      models.Thread.create({
+      return models.Thread.create({
         title,
         content,
         channelId,
         userId: authUser.id,
         lastRepliedAt: new Date(),
+        slug: '',
       });
     },
   },
