@@ -1,4 +1,5 @@
 const { ApolloError} = require('apollo-server-express');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   Mutation: {
@@ -16,6 +17,14 @@ module.exports = {
         email,
         password,
       });
+
+      jwt.sign({
+        id: user.id,
+        email: user.email,
+        role: user.role,
+      }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+      return { token };
     },
   },
 };
