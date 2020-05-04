@@ -8,7 +8,7 @@ module.exports = {
     async me (parent, args, context) {
       const { authUser, models } = context;
       if (!authUser) {
-        throw new AuthenticationError('Unauthorized');
+        throw new AuthenticationError('Unauthenticated');
       }
 
       return models.User.findByPk(authUser.id);
