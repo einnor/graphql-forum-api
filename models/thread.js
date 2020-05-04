@@ -1,4 +1,7 @@
 'use strict';
+
+const SequelizeSlugify = require('sequelize-slugify');
+
 module.exports = (sequelize, DataTypes) => {
   const Thread = sequelize.define('Thread', {
     id: {
@@ -57,5 +60,10 @@ module.exports = (sequelize, DataTypes) => {
     Thread.hasMany(models.Reply);
     Thread.belongsTo(models.Channel, { foreignKey: 'channelId' });
   };
+
+  SequelizeSlugify.slugifyModel(Thread, {
+    source: ['title'],
+  });
+
   return Thread;
 };
