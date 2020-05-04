@@ -16,7 +16,6 @@ module.exports = {
         channelId,
         userId: authUser.id,
         lastRepliedAt: new Date(),
-        slug: '',
       });
     },
   },
