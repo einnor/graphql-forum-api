@@ -1,4 +1,7 @@
 'use strict';
+
+const bcrypt = require('bcrypt');
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: {
@@ -44,5 +47,11 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Thread);
     User.hasMany(models.Reply);
   };
+
+  // Before create hook
+  User.beforeCreate(async (user) => {
+    user.password = await bcrypt.hash(user.password, 10);
+  });
+
   return User;
 };
