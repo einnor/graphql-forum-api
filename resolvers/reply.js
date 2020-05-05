@@ -1,4 +1,4 @@
-// const {} = require('apollo-server-express');
+const { ForbiddenError } = require('apollo-server-express');
 
 module.exports = {
   Mutation: {
@@ -18,6 +18,24 @@ module.exports = {
       });
 
       return reply;
+    },
+
+    async markAsFavorite (parent, args, context) {
+      const { models, authUser } = context;
+      const { id } = args;
+
+      const reply = await models.Reply.findByPk(id);
+      if (!reply) {
+        throw new ForbiddenError('Cannot favorite the reply.');
+      }
+      const [ favorite ] = models.Favorite.findOrCreate({
+        where: {
+          replyId: id,
+          userId: authUser.id,
+        }
+      });
+
+      return favorite;
     }
   },
 };
