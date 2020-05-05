@@ -38,4 +38,15 @@ module.exports = {
       return favorite;
     }
   },
+
+  Reply: {
+    favorites (reply, args, context) {
+      const { models } = context;
+      return models.Favorite.findAll({
+        where: {
+          replyId: reply.id,
+        }
+      });
+    }
+  }
 };
