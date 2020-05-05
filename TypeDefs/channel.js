@@ -10,6 +10,6 @@ module.exports = gql`
   }
 
   extend type Query {
-    allChannels: [Channel!]!
+    channels: [Channel!]!
   }
 `;
