@@ -34,4 +34,10 @@ module.exports = {
       });
     },
   },
+
+  Thread: {
+    creator (thread) {
+      return thread.getUser();
+    }
+  },
 };
