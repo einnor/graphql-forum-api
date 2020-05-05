@@ -21,6 +21,7 @@ module.exports = gql`
 
   extend type Mutation {
     createThread (title: String!, content: String!, channelId: ID!) : Thread!
+    updateThread (id: ID!, title: String!, content: String!, channelId: ID!) : Thread!
   }
 
   extend type Query {
