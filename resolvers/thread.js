@@ -13,6 +13,11 @@ module.exports = {
       }
 
       return thread;
+    },
+
+    async threads (parent, args, context) {
+      const { models } = context;
+      return models.Thread.findAll();
     }
   },
 
