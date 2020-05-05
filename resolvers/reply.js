@@ -8,7 +8,7 @@ module.exports = {
       const thread = await models.Thread.findByPk(threadId);
 
       const reply = await models.Reply.create({
-        threadId,
+        threadID: threadId,
         content,
         userId: authUser.id,
       });
