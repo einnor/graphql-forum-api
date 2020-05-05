@@ -47,6 +47,10 @@ module.exports = {
           replyId: reply.id,
         }
       });
+    },
+
+    user (reply) {
+      return reply.getUser();
     }
   }
 };
