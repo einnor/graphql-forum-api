@@ -13,5 +13,6 @@ module.exports = gql`
 
   extend type Mutation {
     createReply (threadId: ID!, content: String!) : Reply!
+    markAsFavorite (id: ID!) : Favorite!
   }
 `;
