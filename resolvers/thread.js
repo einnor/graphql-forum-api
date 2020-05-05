@@ -73,6 +73,10 @@ module.exports = {
 
     channel (thread) {
       return thread.getChannel();
-    }
+    },
+
+    replies (thread) {
+      return thread.getReplies();
+    },
   },
 };
