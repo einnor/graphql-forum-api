@@ -13,9 +13,9 @@ module.exports = {
         userId: authUser.id,
       });
 
-      // await thread.update({
-      //   lastRepliedAt: new Date(),
-      // });
+      await thread.update({
+        lastRepliedAt: new Date(),
+      });
 
       return reply;
     }
