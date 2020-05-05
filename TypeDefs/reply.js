@@ -10,4 +10,8 @@ module.exports = gql`
     createdAt: DateTime!
     updatedAt: DateTime!
   }
+
+  extend type Mutation {
+    createReply (threadId: ID!, content: String!) : Reply!
+  }
 `;
