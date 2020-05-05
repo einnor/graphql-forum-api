@@ -7,6 +7,7 @@ module.exports = gql`
     content: String!
     user: User!
     isBestAnswer: Boolean!
+    favorites: [Favorite!]!
     createdAt: DateTime!
     updatedAt: DateTime!
   }
