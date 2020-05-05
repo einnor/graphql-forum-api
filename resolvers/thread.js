@@ -18,7 +18,7 @@ module.exports = {
     async threads (parent, args, context) {
       const { models } = context;
       return models.Thread.findAll();
-    }
+    },
   },
 
   Mutation: {
