@@ -100,5 +100,12 @@ module.exports = {
 
       return user;
     },
+
+    async uploadAvatar (parent, args, context) {
+      const { models, authUser } = context;
+      const { avatar} = args;
+
+      const { createReadStream } = await avatar;
+    },
   },
 };
