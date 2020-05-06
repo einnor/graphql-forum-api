@@ -61,7 +61,19 @@ module.exports = {
       await favorite.destroy();
 
       return true;
-    }
+    },
+
+    async markAsBestAnswer (parent, args, context) {
+      const { models, authUser } = context;
+      const { id } = args;
+
+      const reply = await models.Reply.findByPk(id);
+      const thread = await reply.getThread();
+
+      if (authUser.id !== thread.userId) {
+        throw new ForbiddenError('You can only a reply as best answer on your own threads.');
+      }
+    },
   },
 
   Reply: {
