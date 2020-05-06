@@ -27,5 +27,6 @@ module.exports = gql`
     replyFavorited: Favorite!
     replyUnfavorited: Favorite!
     replyMarkedAsBestAnswer: Reply!
+    replyUnmarkedAsBestAnswer: Reply!
   }
 `;
