@@ -1,5 +1,7 @@
 const { ForbiddenError, ApolloError } = require('apollo-server-express');
 
+const REPLY_ADDED = 'REPLY_ADDED';
+
 module.exports = {
   Mutation: {
     async createReply (parent, args, context) {
@@ -17,7 +19,7 @@ module.exports = {
         lastRepliedAt: new Date(),
       });
 
-      pubsub.publish('REPLY_ADDED', { replyAdded: reply });
+      pubsub.publish(REPLY_ADDED, { replyAdded: reply });
 
       return reply;
     },
