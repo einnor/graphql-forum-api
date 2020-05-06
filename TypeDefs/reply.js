@@ -17,5 +17,6 @@ module.exports = gql`
     markAsFavorite (id: ID!) : Favorite!
     unmarkAsFavorite (id: ID!) : Boolean!
     markAsBestAnswer (id: ID!) : Reply!
+    unmarkAsBestAnswer (id: ID!) : Boolean!
   }
 `;
