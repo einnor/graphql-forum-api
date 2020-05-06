@@ -1,5 +1,6 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
+const http = require('http');
 
 const models = require('./models');
 const typeDefs = require('./typeDefs');
@@ -24,5 +25,7 @@ server.applyMiddleware({
   app,
   cors: true,
 });
+
+const httpServer = http.createServer(app);
 
 app.listen({ port }, () => console.log(`Server ready at http://localhost:${port}${server.graphqlPath}`));
