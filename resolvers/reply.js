@@ -13,6 +13,10 @@ module.exports = {
       const { threadId, content } = args;
       const thread = await models.Thread.findByPk(threadId);
 
+      if (thread.isLocked) {
+        throw new ApolloError('Thread has been locked.');
+      }
+
       const reply = await models.Reply.create({
         threadID: threadId,
         content,
