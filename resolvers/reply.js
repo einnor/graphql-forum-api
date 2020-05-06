@@ -99,6 +99,13 @@ module.exports = {
         throw new ApolloError('The reply is not marked as favorite.');
       }
 
+      await reply.update({
+        isBestAnswer: false,
+      });
+      await thread.update({
+        isResolved: false,
+      });
+
       return true;
     }
   },
