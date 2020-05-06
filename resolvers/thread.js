@@ -74,6 +74,12 @@ module.exports = {
       if (thread.isLocked) {
         throw new ApolloError('Thread is already locked');
       }
+
+      thread.update({
+        isLocked: true,
+      });
+
+      return thread;
     },
   },
 
