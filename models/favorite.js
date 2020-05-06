@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     // Disable createdAt and updatedAt fields
-    timestamos: false,
+    timestamps: false,
   });
   Favorite.associate = function(models) {
     // associations can be defined here

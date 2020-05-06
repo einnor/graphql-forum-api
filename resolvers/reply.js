@@ -28,12 +28,15 @@ module.exports = {
       if (!reply) {
         throw new ForbiddenError('Cannot favorite the reply.');
       }
+
       const [ favorite ] = models.Favorite.findOrCreate({
         where: {
           replyId: id,
           userId: authUser.id,
         }
       });
+
+      console.log(favorite);
 
       return favorite;
     }
