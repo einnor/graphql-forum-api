@@ -104,7 +104,7 @@ module.exports = {
 
     async uploadAvatar (parent, args, context) {
       const { models, authUser } = context;
-      const { avatar} = args;
+      const { avatar } = args;
 
       const { createReadStream } = await avatar;
 
@@ -116,20 +116,23 @@ module.exports = {
 
       try {
         const result = await new Promise((resolve, reject) => {
-          createReadStream().pipe(cloudinary.uploader.upload_stream((error, result) => {
-            if (error) {
-              reject(error);
-            }
-  
-            resolve(result);
-          }));
-        });
+          createReadStream()
+            .pipe(cloudinary.uploader.upload_stream((error, result) => {
+              if (error) {
+                reject(error);
+              }
+    
+              resolve(result);
+            }));
+          });
+        console.log(result);
 
         const user = await models.User.findByPk(authUser.id);
 
         await user.update({
           avatar: result.secure_url,
         });
+        return user;
       } catch (error) {
         throw new ApolloError('There was a problem uploading your avatar.');
       }
