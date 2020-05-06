@@ -144,6 +144,15 @@ module.exports = {
     }
   },
 
+  Subscription: {
+    replyAdded: {
+      subscribe (parent, args, context) {
+        const { pubsub } = context;
+        return pubsub.asyncIterator(REPLY_ADDED);
+      },
+    },
+  },
+
   Reply: {
     favorites (reply, args, context) {
       const { models } = context;
