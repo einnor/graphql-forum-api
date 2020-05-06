@@ -133,6 +133,10 @@ module.exports = {
       if (authUser.id !== reply.userId) {
         throw new ForbiddenError('You can only delete your own replies.');
       }
+
+      await reply.destroy();
+
+      return true;
     }
   },
 
