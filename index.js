@@ -13,6 +13,7 @@ const port = 4000;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  subscriptions: '/subscriptions',
   // context: { models },
   context: ({ req }) => {
     const authUser = getAuthUser(req);
