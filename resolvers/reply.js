@@ -165,15 +165,22 @@ module.exports = {
       subscribe (parent, args, context) {
         const { pubsub } = context;
         return pubsub.asyncIterator(REPLY_FAVORITED);
-      }
+      },
     },
 
     replyUnfavorited: {
       subscribe (parent, args, context) {
         const { pubsub } = context;
         return pubsub.asyncIterator(REPLY_UNFAVORITED);
-      }
+      },
     },
+
+    replyMarkedAsBestAnswer: {
+      subscribe (parent, args, context) {
+        const { pubsub } = context;
+        return pubsub.asyncIterator(REPLY_MARKEDED_AS_BEST_ANSWER);
+      }
+    }
   },
 
   Reply: {
