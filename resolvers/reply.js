@@ -164,6 +164,13 @@ module.exports = {
         return pubsub.asyncIterator(REPLY_FAVORITED);
       }
     },
+
+    replyUnfavorited: {
+      subscribe (parent, args, context) {
+        const { pubsub } = context;
+        return pubsub.asyncIterator(REPLY_UNFAVORITED);
+      }
+    },
   },
 
   Reply: {
