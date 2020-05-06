@@ -89,7 +89,7 @@ module.exports = {
 
       const user = await models.User.findByPk(authUser.id);
 
-      const isPasswordValid = bcrypt.compare(currentPassword, user.password);
+      const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
       if (!isPasswordValid) {
         throw new ApolloError('Current password could not be verified.');
       }
