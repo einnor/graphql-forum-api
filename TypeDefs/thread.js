@@ -24,6 +24,7 @@ module.exports = gql`
     createThread (title: String!, content: String!, channelId: ID!) : Thread!
     updateThread (id: ID!, title: String!, content: String!, channelId: ID!) : Thread!
     lockThread (id: ID!) : Thread!
+    unlockThread (id: ID!) : Thread!
   }
 
   extend type Query {
