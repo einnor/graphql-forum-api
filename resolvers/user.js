@@ -113,6 +113,22 @@ module.exports = {
         api_key: process.env.CLOUDINARY_API_KEY,
         api_secret: process.env.CLOUDINARY_API_SECRET,
       });
+
+      try {
+        const result = await new Promise((resolve, reject) => {
+          createReadStream().pipe(cloudinary.uploader.upload_stream((error, result) => {
+            if (error) {
+              reject(error);
+            }
+  
+            resolve(result);
+          }));
+        });
+
+        const user = await models.User.findByPk(authUser.id);
+      } catch (error) {
+        throw new ApolloError('There was a problem uploading your avatar.');
+      }
     },
   },
 };
