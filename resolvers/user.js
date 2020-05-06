@@ -155,4 +155,10 @@ module.exports = {
       }
     },
   },
+
+  User: {
+    threads (user) {
+      return user.getThreads();
+    }
+  },
 };
