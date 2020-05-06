@@ -16,12 +16,13 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   // context: { models },
-  context: ({ req, connection }) => {
+  context: async ({ req, connection }) => {
+    console.log(connection);
     if (connection) {
       return { models, pubsub };
     } else {
       const authUser = getAuthUser(req);
-      return { models, authUser };
+      return { models, authUser, pubsub };
     }
   }
 });
