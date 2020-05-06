@@ -106,7 +106,7 @@ module.exports = {
         isResolved: false,
       });
 
-      return true;
+      return reply;
     }
   },
 
