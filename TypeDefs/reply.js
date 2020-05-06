@@ -19,5 +19,6 @@ module.exports = gql`
     markAsBestAnswer (id: ID!) : Reply!
     unmarkAsBestAnswer (id: ID!) : Reply!
     updateReply (id: ID!, content: String!) : Reply!
+    deleteReply (id: ID!) : Boolean!
   }
 `;
