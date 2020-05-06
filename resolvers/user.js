@@ -87,12 +87,13 @@ module.exports = {
         throw new UserInputError('Missing fields');
       }
 
+      const user = await models.User.findByPk(authUser.id);
+
       const isPasswordValid = bcrypt.compare(currentPassword, user.password);
       if (!isPasswordValid) {
         throw new ApolloError('Current password could not be verified.');
       }
 
-      const user = await models.User.findByPk(authUser.id);
       await user.update({
         password: newPassword,
       });
