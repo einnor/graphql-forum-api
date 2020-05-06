@@ -126,6 +126,10 @@ module.exports = {
         });
 
         const user = await models.User.findByPk(authUser.id);
+
+        await user.update({
+          avatar: result.secure_url,
+        });
       } catch (error) {
         throw new ApolloError('There was a problem uploading your avatar.');
       }
