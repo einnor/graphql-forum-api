@@ -25,5 +25,6 @@ module.exports = gql`
   extend type Subscription {
     replyAdded: Reply!
     replyFavorited: Favorite!
+    replyUnfavorited: Favorite!
   }
 `;
