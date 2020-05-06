@@ -182,8 +182,15 @@ module.exports = {
       subscribe (parent, args, context) {
         const { pubsub } = context;
         return pubsub.asyncIterator(REPLY_MARKEDED_AS_BEST_ANSWER);
-      }
-    }
+      },
+    },
+
+    replyUnmarkedAsBestAnswer: {
+      subscribe (parent, args, context) {
+        const { pubsub } = context;
+        return pubsub.asyncIterator(REPLY_UNMARKEDED_AS_BEST_ANSWER);
+      },
+    },
   },
 
   Reply: {
