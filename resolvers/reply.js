@@ -57,6 +57,10 @@ module.exports = {
       if (!favorite) {
         throw new ForbiddenError('The favorite does not exist.');
       }
+
+      await favorite.destroy();
+
+      return true;
     }
   },
 
