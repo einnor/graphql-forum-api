@@ -17,7 +17,6 @@ const server = new ApolloServer({
   resolvers,
   // context: { models },
   context: async ({ req, connection }) => {
-    console.log(connection);
     if (connection) {
       return { models, pubsub };
     } else {
