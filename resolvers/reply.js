@@ -1,4 +1,4 @@
-const { ForbiddenError } = require('apollo-server-express');
+const { ForbiddenError, ApolloError } = require('apollo-server-express');
 
 module.exports = {
   Mutation: {
@@ -71,7 +71,7 @@ module.exports = {
       const thread = await reply.getThread();
 
       if (authUser.id !== thread.userId) {
-        throw new ForbiddenError('You can only a reply as best answer on your own threads.');
+        throw new ForbiddenError('You can only mark a reply as best answer on your own threads.');
       }
 
       await reply.update({
@@ -83,6 +83,24 @@ module.exports = {
 
       return reply;
     },
+
+    async unmarkAsBestAnswer (parent, args, context) {
+      const { models, authUser } = context;
+      const { id } = args;
+
+      const reply = await models.Reply.findByPk(id);
+      const thread = await reply.getThread();
+
+      if (authUser.id !== thread.userId) {
+        throw new ForbiddenError('You can only unmark a reply as best answer on your own threads.');
+      }
+
+      if (!reply.isBestAnswer) {
+        throw new ApolloError('The reply is not marked as favorite.');
+      }
+
+      return true;
+    }
   },
 
   Reply: {
