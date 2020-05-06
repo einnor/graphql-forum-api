@@ -4,6 +4,7 @@ const REPLY_ADDED = 'REPLY_ADDED';
 const REPLY_FAVORITED = 'REPLY_FAVORITED';
 const REPLY_UNFAVORITED = 'REPLY_UNFAVORITED';
 const REPLY_MARKEDED_AS_BEST_ANSWER = 'REPLY_MARKEDED_AS_BEST_ANSWER';
+const REPLY_UNMARKEDED_AS_BEST_ANSWER = 'REPLY_UNMARKEDED_AS_BEST_ANSWER';
 
 module.exports = {
   Mutation: {
@@ -98,7 +99,7 @@ module.exports = {
     },
 
     async unmarkAsBestAnswer (parent, args, context) {
-      const { models, authUser } = context;
+      const { models, authUser, pubsub } = context;
       const { id } = args;
 
       const reply = await models.Reply.findByPk(id);
@@ -118,6 +119,8 @@ module.exports = {
       await thread.update({
         isResolved: false,
       });
+
+      pubsub.publish(REPLY_UNMARKEDED_AS_BEST_ANSWER, { replyUnmarkedAsBestAnswer: reply });
 
       return reply;
     },
