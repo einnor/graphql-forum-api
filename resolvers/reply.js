@@ -124,6 +124,16 @@ module.exports = {
 
       return reply;
     },
+
+    async deleteReply (parent, args, context) {
+      const { models, authUser } = context;
+      const { id } = args;
+
+      const reply = await models.Reply.findByPk(id);
+      if (authUser.id !== reply.userId) {
+        throw new ForbiddenError('You can only delete your own replies.');
+      }
+    }
   },
 
   Reply: {
