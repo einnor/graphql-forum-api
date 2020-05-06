@@ -53,5 +53,10 @@ module.exports = (sequelize, DataTypes) => {
     user.password = await bcrypt.hash(user.password, 10);
   });
 
+  // Before update hook
+  User.beforeUpdate(async (user) => {
+    user.password = await bcrypt.hash(user.password, 10);
+  });
+
   return User;
 };
