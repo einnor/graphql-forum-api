@@ -6,6 +6,7 @@ module.exports = gql`
     username: String!
     role: Role!
     avatar: String!
+    threads: [Thread!]!
     createdAt: DateTime!
     updatedAt: DateTime!
   }
