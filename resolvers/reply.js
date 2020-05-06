@@ -73,6 +73,15 @@ module.exports = {
       if (authUser.id !== thread.userId) {
         throw new ForbiddenError('You can only a reply as best answer on your own threads.');
       }
+
+      await reply.update({
+        isBestAnswer: true,
+      });
+      await thread.update({
+        isResolved: true,
+      });
+
+      return reply;
     },
   },
 
