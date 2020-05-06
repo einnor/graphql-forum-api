@@ -154,6 +154,13 @@ module.exports = {
         return pubsub.asyncIterator(REPLY_ADDED);
       },
     },
+
+    replyFavorited: {
+      subscribe (parent, args, context) {
+        const { pubsub } = context;
+        return pubsub.asyncIterator(REPLY_FAVORITED);
+      }
+    },
   },
 
   Reply: {
