@@ -26,7 +26,7 @@ module.exports = {
 
       const reply = await models.Reply.findByPk(id);
       if (!reply) {
-        throw new ForbiddenError('Cannot favorite the reply.');
+        throw new ForbiddenError('The reply does not exist.');
       }
 
       const [ favorite ] = await models.Favorite.findOrCreate({
@@ -45,7 +45,17 @@ module.exports = {
 
       const reply = await models.Reply.findByPk(id);
       if (!reply) {
-        throw new ForbiddenError('Cannot favorite the reply.');
+        throw new ForbiddenError('The reply does not exist.');
+      }
+
+      const favorite = await models.Favorite.findOne({
+        where: {
+          replyId: id,
+          userId: authUser.id,
+        },
+      });
+      if (!favorite) {
+        throw new ForbiddenError('The favorite does not exist.');
       }
     }
   },
