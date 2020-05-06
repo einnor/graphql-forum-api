@@ -113,6 +113,10 @@ module.exports = {
       const reply = await models.Reply.findByPk(id);
       const thread = await reply.getThread();
 
+      if (thread.isLocked) {
+        throw new ApolloError('Thread has been locked.');
+      }
+
       if (authUser.id !== thread.userId) {
         throw new ForbiddenError('You can only unmark a reply as best answer on your own threads.');
       }
