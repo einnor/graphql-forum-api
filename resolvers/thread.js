@@ -93,7 +93,7 @@ module.exports = {
       const thread = await models.Thread.findByPk(id);
 
       if (!thread.isLocked) {
-        throw new ApolloError('Thread is not locked');
+        throw new ApolloError('Thread is already unlocked');
       }
 
       thread.update({
