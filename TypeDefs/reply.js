@@ -21,4 +21,8 @@ module.exports = gql`
     updateReply (id: ID!, content: String!) : Reply!
     deleteReply (id: ID!) : Boolean!
   }
+
+  extend type Subscription {
+    replyAdded: Reply!
+  }
 `;
