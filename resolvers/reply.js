@@ -37,6 +37,16 @@ module.exports = {
       });
 
       return favorite;
+    },
+
+    async unmarkAsFavorite (parent, args, context) {
+      const { models, authUser } = context;
+      const { id } = args;
+
+      const reply = await models.Reply.findByPk(id);
+      if (!reply) {
+        throw new ForbiddenError('Cannot favorite the reply.');
+      }
     }
   },
 
