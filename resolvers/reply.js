@@ -111,12 +111,18 @@ module.exports = {
 
     async updateReply (parent, args, context) {
       const { models, authUser } = context;
-      const { id } = args;
+      const { id, content } = args;
 
       const reply = await models.Reply.findByPk(id);
       if (authUser.id !== reply.userId) {
-        throw new ForbiddenError('You can only edit your own reply.');
+        throw new ForbiddenError('You can only edit your own replies.');
       }
+
+      await reply.update({
+        content,
+      });
+
+      return reply;
     },
   },
 
