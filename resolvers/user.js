@@ -65,5 +65,18 @@ module.exports = {
 
       return { token };
     },
+
+    async updateUser (parent, args, context) {
+      const { models, authUser } = context;
+      const { username, email } = args;
+
+      const user = await models.User.findByPk(authUser.id);
+      await user.update({
+        username,
+        email,
+      });
+
+      return user;
+    },
   },
 };
