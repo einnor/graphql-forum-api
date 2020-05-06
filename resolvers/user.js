@@ -25,6 +25,10 @@ module.exports = {
         },
       });
 
+      if (!user) {
+        throw new ApolloError('No user found');
+      }
+
       return user;
     },
   },
