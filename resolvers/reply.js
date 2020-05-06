@@ -3,6 +3,7 @@ const { ForbiddenError, ApolloError } = require('apollo-server-express');
 const REPLY_ADDED = 'REPLY_ADDED';
 const REPLY_FAVORITED = 'REPLY_FAVORITED';
 const REPLY_UNFAVORITED = 'REPLY_UNFAVORITED';
+const REPLY_MARKEDED_AS_BEST_ANSWER = 'REPLY_MARKEDED_AS_BEST_ANSWER';
 
 module.exports = {
   Mutation: {
@@ -74,7 +75,7 @@ module.exports = {
     },
 
     async markAsBestAnswer (parent, args, context) {
-      const { models, authUser } = context;
+      const { models, authUser, pubsub } = context;
       const { id } = args;
 
       const reply = await models.Reply.findByPk(id);
@@ -90,6 +91,8 @@ module.exports = {
       await thread.update({
         isResolved: true,
       });
+
+      pubsub.publish(REPLY_MARKEDED_AS_BEST_ANSWER, { replyMarkedAsBestAnswer: reply });
 
       return reply;
     },
