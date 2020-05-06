@@ -16,5 +16,6 @@ module.exports = gql`
     createReply (threadId: ID!, content: String!) : Reply!
     markAsFavorite (id: ID!) : Favorite!
     unmarkAsFavorite (id: ID!) : Boolean!
+    markAsBestAnswer (id: ID!) : Reply!
   }
 `;
