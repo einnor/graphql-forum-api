@@ -14,6 +14,19 @@ module.exports = {
 
       return models.User.findByPk(authUser.id);
     },
+
+    async user (parent, args, context) {
+      const { authUser, models } = context;
+      const { username } = args;
+
+      const user = await models.User.findOne({
+        where: {
+          username,
+        },
+      });
+
+      return user;
+    },
   },
 
   Mutation: {
