@@ -51,6 +51,10 @@ module.exports = {
 
       const thread = await models.Thread.findByPk(id);
 
+      if (thread.isLocked) {
+        throw new ApolloError('Thread has been locked.');
+      }
+
       // Check that the authenticated user owns the thread
       if (authUser.id !== thread.userId) {
         throw new ForbiddenError('You can only edit your own threads');
