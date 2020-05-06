@@ -3,7 +3,7 @@ const { ForbiddenError, ApolloError } = require('apollo-server-express');
 module.exports = {
   Mutation: {
     async createReply (parent, args, context) {
-      const { models, authUser } = context;
+      const { models, authUser, pubsub } = context;
       const { threadId, content } = args;
       const thread = await models.Thread.findByPk(threadId);
 
@@ -16,6 +16,8 @@ module.exports = {
       await thread.update({
         lastRepliedAt: new Date(),
       });
+
+      pubsub.publish('REPLY_ADDED', { replyAdded: reply });
 
       return reply;
     },
@@ -153,5 +155,5 @@ module.exports = {
     user (reply) {
       return reply.getUser();
     }
-  }
+  },
 };
