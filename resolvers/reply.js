@@ -2,6 +2,7 @@ const { ForbiddenError, ApolloError } = require('apollo-server-express');
 
 const REPLY_ADDED = 'REPLY_ADDED';
 const REPLY_FAVORITED = 'REPLY_FAVORITED';
+const REPLY_UNFAVORITED = 'REPLY_UNFAVORITED';
 
 module.exports = {
   Mutation: {
@@ -47,7 +48,7 @@ module.exports = {
     },
 
     async unmarkAsFavorite (parent, args, context) {
-      const { models, authUser } = context;
+      const { models, authUser, pubsub } = context;
       const { id } = args;
 
       const reply = await models.Reply.findByPk(id);
@@ -66,6 +67,8 @@ module.exports = {
       }
 
       await favorite.destroy();
+
+      pubsub.publish(REPLY_UNFAVORITED, { replyUnfavorited: favorite });
 
       return true;
     },
