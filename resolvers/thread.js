@@ -63,7 +63,18 @@ module.exports = {
       });
 
       return thread;
-    }
+    },
+
+    async lockThread (parent, args, context) {
+      const { models, authUser } = context;
+      const { id } = args;
+
+      const thread = await models.Thread.findByPk(id);
+
+      if (thread.isLocked) {
+        throw new ApolloError('Thread is already locked');
+      }
+    },
   },
 
   Thread: {
