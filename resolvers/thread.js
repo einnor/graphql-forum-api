@@ -85,6 +85,23 @@ module.exports = {
 
       return thread;
     },
+
+    async unlockThread (parent, args, context) {
+      const { models, authUser } = context;
+      const { id } = args;
+
+      const thread = await models.Thread.findByPk(id);
+
+      if (!thread.isLocked) {
+        throw new ApolloError('Thread is not locked');
+      }
+
+      thread.update({
+        isLocked: false,
+      });
+
+      return thread;
+    },
   },
 
   Thread: {
