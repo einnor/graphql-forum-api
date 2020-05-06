@@ -78,5 +78,26 @@ module.exports = {
 
       return user;
     },
+
+    async changePassword (parent, args, context) {
+      const { models, authUser } = context;
+      const { currentPassword, newPassword } = args;
+
+      if (!currentPassword || !newPassword) {
+        throw new UserInputError('Missing fields');
+      }
+
+      const isPasswordValid = bcrypt.compare(currentPassword, user.password);
+      if (!isPasswordValid) {
+        throw new ApolloError('Current password could not be verified.');
+      }
+
+      const user = await models.User.findByPk(authUser.id);
+      await user.update({
+        password: newPassword,
+      });
+
+      return user;
+    },
   },
 };
