@@ -6,7 +6,7 @@ const models = require('./models');
 const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers');
 const { getAuthUser } = require('./utils');
-const { AuthDirective } = require('./directives');
+const { AuthDirective, IsAdminDirective } = require('./directives');
 
 const app = express();
 const port = 4000;
@@ -18,6 +18,7 @@ const server = new ApolloServer({
   resolvers,
   schemaDirectives: {
     auth: AuthDirective,
+    isAdmin: IsAdminDirective,
   },
   // context: { models },
   context: async ({ req, connection }) => {
