@@ -19,7 +19,7 @@ module.exports = gql`
     markAsBestAnswer (id: ID!) : Reply! @auth
     unmarkAsBestAnswer (id: ID!) : Reply! @auth
     updateReply (id: ID!, content: String!) : Reply! @auth
-    deleteReply (id: ID!) : Boolean!
+    deleteReply (id: ID!) : Boolean! @auth
   }
 
   extend type Subscription {
