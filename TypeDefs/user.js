@@ -25,7 +25,7 @@ module.exports = gql`
     signIn(email: String!, password: String!): Token!
     updateUser(username: String, email: String) : User! @auth
     changePassword(currentPassword: String!, newPassword: String!) : User! @auth
-    uploadAvatar (avatar: Upload!) : User!
+    uploadAvatar (avatar: Upload!) : User! @auth
   }
 
   extend type Query {
