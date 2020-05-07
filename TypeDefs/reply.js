@@ -16,7 +16,7 @@ module.exports = gql`
     createReply (threadId: ID!, content: String!) : Reply! @auth
     markAsFavorite (id: ID!) : Favorite! @auth
     unmarkAsFavorite (id: ID!) : Boolean! @auth
-    markAsBestAnswer (id: ID!) : Reply!
+    markAsBestAnswer (id: ID!) : Reply! @auth
     unmarkAsBestAnswer (id: ID!) : Reply!
     updateReply (id: ID!, content: String!) : Reply!
     deleteReply (id: ID!) : Boolean!
