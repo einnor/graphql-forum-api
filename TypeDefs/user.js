@@ -24,7 +24,7 @@ module.exports = gql`
     signUp(username: String!, email: String!, password: String!): Token!
     signIn(email: String!, password: String!): Token!
     updateUser(username: String, email: String) : User! @auth
-    changePassword(currentPassword: String!, newPassword: String!) : User!
+    changePassword(currentPassword: String!, newPassword: String!) : User! @auth
     uploadAvatar (avatar: Upload!) : User!
   }
 
