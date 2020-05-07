@@ -1,4 +1,4 @@
-const { UserInputError, ApolloError, ForbiddenError, AuthenticationError } = require('apollo-server-express');
+const { UserInputError, ApolloError, ForbiddenError } = require('apollo-server-express');
 
 module.exports = {
   Query: {
@@ -25,10 +25,6 @@ module.exports = {
     async createThread (parent, args, context) {
       const { models, authUser } = context;
       const { title, content, channelId } = args;
-
-      if (!authUser) {
-        throw new AuthenticationError('You are not authenticated.');
-      }
 
       if (!title || !content || !channelId) {
         throw new UserInputError('Missing fields');
