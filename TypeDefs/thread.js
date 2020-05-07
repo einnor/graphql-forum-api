@@ -4,7 +4,7 @@ module.exports = gql`
   type Thread {
     id: ID!
     title: String!
-    slug: String! #@deprecated(reason: "This field is no longer supported.")
+    slug: String!
     creator: User!
     channel: Channel!
     replies: [Reply]!

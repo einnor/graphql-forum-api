@@ -16,4 +16,4 @@ class AuthDirective extends SchemaDirectiveVisitor {
   }
 }
 
-module.exports = AuthenticationError;
+module.exports = AuthDirective;
