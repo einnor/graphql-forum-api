@@ -23,7 +23,7 @@ module.exports = gql`
   extend type Mutation {
     createThread (title: String!, content: String!, channelId: ID!) : Thread! @auth
     updateThread (id: ID!, title: String!, content: String!, channelId: ID!) : Thread! @auth
-    lockThread (id: ID!) : Thread!
+    lockThread (id: ID!) : Thread! @isAdmin
     unlockThread (id: ID!) : Thread!
   }
 
