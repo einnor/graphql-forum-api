@@ -17,7 +17,7 @@ module.exports = gql`
     markAsFavorite (id: ID!) : Favorite! @auth
     unmarkAsFavorite (id: ID!) : Boolean! @auth
     markAsBestAnswer (id: ID!) : Reply! @auth
-    unmarkAsBestAnswer (id: ID!) : Reply!
+    unmarkAsBestAnswer (id: ID!) : Reply! @auth
     updateReply (id: ID!, content: String!) : Reply!
     deleteReply (id: ID!) : Boolean!
   }
