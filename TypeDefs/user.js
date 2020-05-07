@@ -29,7 +29,7 @@ module.exports = gql`
   }
 
   extend type Query {
-    me: User!
+    me: User! @auth
     user (username: String!) : User!
   }
 `;
