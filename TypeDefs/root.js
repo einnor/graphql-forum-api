@@ -4,6 +4,8 @@ module.exports = gql`
   scalar DateTime
 
   directive @auth on FIELD_DEFINITION
+
+  directive @isAdmin on FIELD_DEFINITION
   
   type Query {
     _: String
