@@ -7,12 +7,17 @@ module.exports = gql`
     slug: String!
     creator: User!
     channel: Channel!
-    replies (perPgae: Int, after: String): [Reply]!
+    replies (perPgae: Int, after: String): ReplyConnection!
     status: ThreadStatus!
     isLocked: Boolean!
     lastRepliedAt: DateTime!
     createdAt: DateTime!
     updatedAt: DateTime!
+  }
+
+  type ReplyConnection {
+    edges: [Reply!]!
+    pageInfo: PageInfo!
   }
 
   enum ThreadStatus {
