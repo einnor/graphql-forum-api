@@ -153,8 +153,31 @@ module.exports = {
       return thread.getChannel();
     },
 
-    replies (thread) {
-      return thread.getReplies();
+    async replies (thread, args, context) {
+      const { models } = context;
+      const { perPage = 15, after } = args;
+
+      const whereOptions = {
+        threadId: thread.id,
+      };
+
+      if (after) {
+        whereOptions.createdAt = {
+          [models.Sequelize.Op.gt]: after,
+        }
+      }
+      const { rows, count } = await models.Reply.findAndCountAll({
+        where: whereOptions,
+        orderBy: [['createdAt', 'ASC']],
+        limit: perPage,
+      });
+      return {
+        edges: rows,
+        pageInfo: {
+          endCursor: rows.length ? rows[rows.length - 1].createdAt : null,
+          hasMore: rows.length ? count > rows.length : false,
+        },
+      };
     },
   },
 };
