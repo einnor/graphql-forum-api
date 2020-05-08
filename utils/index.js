@@ -29,8 +29,13 @@ const encodeCursor = (cursor) => {
   return Buffer.from(cursor).toString('base64');
 };
 
+const decodeCursor = (cursor) => {
+  return Buffer.from(cursor, 'base64').toString('ascii');
+};
+
 module.exports = {
   generateToken,
   getAuthUser,
   encodeCursor,
+  decodeCursor,
 };
