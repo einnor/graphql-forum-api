@@ -42,6 +42,16 @@ module.exports = {
         where: whereOptions,
       });
     },
+
+    async threadsByMe (parent, args, context) {
+      const { models, authUser } = context;
+
+      return models.Thread.findAll({
+        where: {
+          userId: authUser.id,
+        },
+      });
+    },
   },
 
   Mutation: {
