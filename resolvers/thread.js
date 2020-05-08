@@ -19,6 +19,8 @@ module.exports = {
       const { models } = context;
       const { channelSlug } = args;
 
+      const whereOptions = {};
+
       if (channelSlug) {
         const channel = await models.Channel.findOne({
           where: {
@@ -29,8 +31,12 @@ module.exports = {
         if (!channel) {
           throw new ApolloError('Channel not found.');
         }
+
+        whereOptions.channelId = channel.id;
       }
-      return models.Thread.findAll();
+      return models.Thread.findAll({
+        where: whereOptions,
+      });
     },
   },
 
