@@ -161,30 +161,32 @@ module.exports = {
     },
 
     async replies (thread, args, context) {
-      const { models } = context;
-      const { perPage = 15, after } = args;
+      const { models, loaders } = context;
 
-      const whereOptions = {
-        threadId: thread.id,
-      };
+      return loaders.replies.load(thread.id);
+      // const { perPage = 15, after } = args;
 
-      if (after) {
-        whereOptions.createdAt = {
-          [models.Sequelize.Op.gt]: decodeCursor(after),
-        }
-      }
-      const { rows, count } = await models.Reply.findAndCountAll({
-        where: whereOptions,
-        orderBy: [['createdAt', 'ASC']],
-        limit: perPage,
-      });
-      return {
-        edges: rows,
-        pageInfo: {
-          endCursor: rows.length ? encodeCursor(rows[rows.length - 1].createdAt.toISOString()) : null,
-          hasMore: rows.length ? count > rows.length : false,
-        },
-      };
+      // const whereOptions = {
+      //   threadId: thread.id,
+      // };
+
+      // if (after) {
+      //   whereOptions.createdAt = {
+      //     [models.Sequelize.Op.gt]: decodeCursor(after),
+      //   }
+      // }
+      // const { rows, count } = await models.Reply.findAndCountAll({
+      //   where: whereOptions,
+      //   orderBy: [['createdAt', 'ASC']],
+      //   limit: perPage,
+      // });
+      // return {
+      //   edges: rows,
+      //   pageInfo: {
+      //     endCursor: rows.length ? encodeCursor(rows[rows.length - 1].createdAt.toISOString()) : null,
+      //     hasMore: rows.length ? count > rows.length : false,
+      //   },
+      // };
     },
   },
 };
