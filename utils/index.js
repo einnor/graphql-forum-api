@@ -25,7 +25,12 @@ const getAuthUser = (req) => {
   }
 };
 
+const encodeCursor = (cursor) => {
+  return Buffer.from(cursor).toString('base64');
+};
+
 module.exports = {
   generateToken,
   getAuthUser,
+  encodeCursor,
 };
