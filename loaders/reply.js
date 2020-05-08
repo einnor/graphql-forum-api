@@ -1,5 +1,5 @@
 const DataLoader = require('dataloader');
-const groupBy = require('lodash.groupBy');
+const groupBy = require('lodash/groupBy');
 
 const models = require('../models');
 
