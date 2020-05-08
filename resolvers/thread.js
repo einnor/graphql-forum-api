@@ -153,8 +153,11 @@ module.exports = {
       return loaders.user.load(thread.userId);
     },
 
-    channel (thread) {
-      return thread.getChannel();
+    channel (thread, args, context) {
+      // return thread.getChannel();
+      const { loaders } = context;
+      return loaders.channel.load(thread.channelId);
+
     },
 
     async replies (thread, args, context) {
