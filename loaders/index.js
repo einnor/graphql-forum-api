@@ -1,6 +1,6 @@
 const userLoader = require('./user');
 const channelLoader = require('./channel');
-const repliesLoader = require('./reply');
+const repliesLoader = require('./replies');
 
 module.exports = {
   userLoader,

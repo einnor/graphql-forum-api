@@ -215,8 +215,10 @@ module.exports = {
       });
     },
 
-    user (reply) {
-      return reply.getUser();
+    user (reply, args, context) {
+      // return reply.getUser();
+      const { loaders } = context;
+      return loaders.user.load(reply.userId);
     }
   },
 };
