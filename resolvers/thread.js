@@ -176,7 +176,7 @@ module.exports = {
       return {
         edges: rows,
         pageInfo: {
-          endCursor: rows.length ? encodeCursor(rows[rows.length - 1].createdAt).toISOString() : null,
+          endCursor: rows.length ? encodeCursor(rows[rows.length - 1].createdAt.toISOString()) : null,
           hasMore: rows.length ? count > rows.length : false,
         },
       };
