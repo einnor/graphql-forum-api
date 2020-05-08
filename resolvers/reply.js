@@ -207,12 +207,13 @@ module.exports = {
 
   Reply: {
     favorites (reply, args, context) {
-      const { models } = context;
-      return models.Favorite.findAll({
-        where: {
-          replyId: reply.id,
-        }
-      });
+      const { models, loaders } = context;
+      // return models.Favorite.findAll({
+      //   where: {
+      //     replyId: reply.id,
+      //   }
+      // });
+      return loaders.favorites.load(reply.id);
     },
 
     user (reply, args, context) {
