@@ -165,7 +165,7 @@ module.exports = {
 
       if (after) {
         whereOptions.createdAt = {
-          [models.Sequelize.Op.gt]: after,
+          [models.Sequelize.Op.gt]: decodeCursor(after),
         }
       }
       const { rows, count } = await models.Reply.findAndCountAll({
