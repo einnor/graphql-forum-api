@@ -30,7 +30,7 @@ module.exports = gql`
   extend type Query {
     thread (id: ID!): Thread
     threads (channelSlug: String, status: ThreadStatus, perPage: Int, page: Int): [Thread!]!
-    threadsByMe: [Thread!]! @auth
+    threadsByMe (perPage: Int, page: Int): [Thread!]! @auth
   }
 `;
 
