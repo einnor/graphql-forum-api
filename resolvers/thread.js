@@ -1,5 +1,7 @@
 const { UserInputError, ApolloError, ForbiddenError } = require('apollo-server-express');
 
+const { encodeCursor, decodeCursor } = require('../utils');
+
 module.exports = {
   Query: {
     async thread (parent, args, context) {
@@ -174,7 +176,7 @@ module.exports = {
       return {
         edges: rows,
         pageInfo: {
-          endCursor: rows.length ? rows[rows.length - 1].createdAt : null,
+          endCursor: rows.length ? encodeCursor(rows[rows.length - 1].createdAt).toISOString() : null,
           hasMore: rows.length ? count > rows.length : false,
         },
       };
