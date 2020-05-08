@@ -19,6 +19,7 @@
     "express": "^4.17.1",
     "graphql": "^15.0.0",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.7",
