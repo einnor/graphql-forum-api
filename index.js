@@ -7,7 +7,7 @@ const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers');
 const { getAuthUser } = require('./utils');
 const { AuthDirective, IsAdminDirective } = require('./directives');
-const { userLoader } = require('./loaders');
+const { userLoader, channelLoader } = require('./loaders');
 
 const app = express();
 const port = 4000;
@@ -33,6 +33,7 @@ const server = new ApolloServer({
         pubsub,
         loaders: {
           user: userLoader(),
+          channel: channelLoader(),
         },
       };
     }
