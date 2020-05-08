@@ -14,6 +14,6 @@ const batchUsers = async (ids, models) => {
   return ids.map(id => users.find(user => user.id === id));
 };
 
-const loader = new DataLoader(ids => batchUsers(ids, models));
+const loader = () => new DataLoader(ids => batchUsers(ids, models));
 
 module.exports = loader;

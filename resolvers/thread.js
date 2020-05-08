@@ -147,8 +147,10 @@ module.exports = {
   },
 
   Thread: {
-    creator (thread) {
-      return thread.getUser();
+    creator (thread, args, context) {
+      // return thread.getUser();
+      const { loaders } = context;
+      return loaders.user.load(thread.userId);
     },
 
     channel (thread) {
