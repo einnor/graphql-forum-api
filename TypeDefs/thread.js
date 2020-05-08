@@ -29,7 +29,7 @@ module.exports = gql`
 
   extend type Query {
     thread (id: ID!): Thread
-    threads: [Thread!]!
+    threads (channelSlug: String): [Thread!]!
   }
 `;
 
