@@ -17,9 +17,13 @@ module.exports = {
 
     async threads (parent, args, context) {
       const { models } = context;
-      const { channelSlug } = args;
+      const { channelSlug, status } = args;
 
       const whereOptions = {};
+
+      if (status) {
+        whereOptions.status = status;
+      }
 
       if (channelSlug) {
         const channel = await models.Channel.findOne({
