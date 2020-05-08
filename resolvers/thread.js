@@ -17,7 +17,7 @@ module.exports = {
 
     async threads (parent, args, context) {
       const { models } = context;
-      const { channelSlug, status } = args;
+      const { channelSlug, status, perPage, page } = args;
 
       const whereOptions = {};
 
@@ -40,6 +40,7 @@ module.exports = {
       }
       return models.Thread.findAll({
         where: whereOptions,
+        orderBy: [['lastRepliedAt', 'DESC']],
       });
     },
 
