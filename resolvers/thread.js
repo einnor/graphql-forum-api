@@ -17,7 +17,7 @@ module.exports = {
 
     async threads (parent, args, context) {
       const { models } = context;
-      const { channelSlug, status, perPage, page } = args;
+      const { channelSlug, status, perPage = 15, page = 1 } = args;
 
       const whereOptions = {};
 
