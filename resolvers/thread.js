@@ -25,6 +25,10 @@ module.exports = {
             slug: channelSlug,
           },
         });
+
+        if (!channel) {
+          throw new ApolloError('Channel not found.');
+        }
       }
       return models.Thread.findAll();
     },
