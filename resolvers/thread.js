@@ -41,7 +41,8 @@ module.exports = {
       return models.Thread.findAll({
         where: whereOptions,
         orderBy: [['lastRepliedAt', 'DESC']],
-        limit: perPage
+        limit: perPage,
+        offset: page === 1 ? 0 : perPage * (page - 1),
       });
     },
 
