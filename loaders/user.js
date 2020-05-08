@@ -15,3 +15,5 @@ const batchUsers = async (ids, models) => {
 };
 
 const loader = new DataLoader(ids => batchUsers(ids, models));
+
+module.exports = loader;
