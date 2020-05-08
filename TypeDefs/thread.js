@@ -20,6 +20,11 @@ module.exports = gql`
     pageInfo: PageInfo!
   }
 
+  type PageInfo {
+    endCursor: String,
+    hasMore: Boolean!
+  }
+
   enum ThreadStatus {
     SOLVED
     UNSOLVED
