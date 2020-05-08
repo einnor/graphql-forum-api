@@ -48,11 +48,15 @@ module.exports = {
 
     async threadsByMe (parent, args, context) {
       const { models, authUser } = context;
+      const { perPage = 15, page = 1 } = args;
 
       return models.Thread.findAll({
         where: {
           userId: authUser.id,
         },
+        orderBy: [['lastRepliedAt', 'DESC']],
+        limit: perPage,
+        offset: page === 1 ? 0 : perPage * (page - 1),
       });
     },
   },
