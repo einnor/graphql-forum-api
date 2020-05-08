@@ -154,8 +154,17 @@ module.exports = {
   },
 
   User: {
-    threads (user) {
-      return user.getThreads();
+    threads (user, args, context) {
+      const { perPage = 15, page = 1 } = args;
+
+      return model.Thread.findAll({
+        where: {
+          userId: user.id,
+        },
+        orderBy: [['lastRepliedAt', 'DESC']],
+        limit: perPage,
+        offset: page === 1 ? 0 : perPage * (page - 1),
+      });
     }
   },
 };
