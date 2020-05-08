@@ -15,7 +15,7 @@ const replies = await models.Reply.findAll({
 
   const groupByThreadId = groupBy(replies, 'threadId');
 
-  return ids.map(id => replies.find(reply => reply.id === id));
+  return ids.map(id => groupByThreadId[id] || []);
 };
 
 const loader = () => new DataLoader(ids => batchReplies(ids, models));
