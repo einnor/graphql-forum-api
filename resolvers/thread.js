@@ -17,6 +17,15 @@ module.exports = {
 
     async threads (parent, args, context) {
       const { models } = context;
+      const { channelSlug } = args;
+
+      if (channelSlug) {
+        const channel = await models.Channel.findOne({
+          where: {
+            slug: channelSlug,
+          },
+        });
+      }
       return models.Thread.findAll();
     },
   },
