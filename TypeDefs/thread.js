@@ -7,7 +7,8 @@ module.exports = gql`
     slug: String!
     creator: User!
     channel: Channel!
-    replies (perPgae: Int, after: String): ReplyConnection!
+    # replies (perPgae: Int, after: String): ReplyConnection!
+    replies: [Reply!]!
     status: ThreadStatus!
     isLocked: Boolean!
     lastRepliedAt: DateTime!
